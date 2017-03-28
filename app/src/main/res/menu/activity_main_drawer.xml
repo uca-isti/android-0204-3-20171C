@@ -9,16 +9,20 @@
        
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="Locales">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_alimentos"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Alimentos" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_veterinarias"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Veterinarias" />
+            <item
+                android:id="@+id/nav_Articulos"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Articulos" />
         </menu>
     </item>
 
