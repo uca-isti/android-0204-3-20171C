@@ -12,4 +12,13 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="navigation_drawer_your_pets">Tus macotas</string>
+    <string name="navigation_drawer_places">Lugares</string>
+    <string name="navigation_drawer_food_places">Alimentos</string>
+    <string name="navigation_drawer_veterinarian_places">Veterinarias</string>
+    <string name="navigation_drawer_tool_places">Articulos</string>
+    <string name="navigation_drawer_cares">Cuidados</string>
+    <string name="navigation_drawer_hygienic_cares">Higienicos</string>
+    <string name="navigation_drawer_food_cares">Alimenticios</string>
+    <string name="navigation_drawer_vaccines">Vacunas</string>
 </resources>
