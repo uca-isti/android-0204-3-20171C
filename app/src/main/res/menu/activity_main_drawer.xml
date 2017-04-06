@@ -9,18 +9,43 @@
        
     </group>
 
-    <item android:title="Locales">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pets"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/navigation_drawer_your_pets" />
+
+    </group>
+
+    <item android:title="@string/navigation_drawer_places">
         <menu>
             <item
                 android:id="@+id/nav_alimentos"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Alimentos" />
+                android:title="@string/navigation_drawer_food_places" />
             <item
                 android:id="@+id/nav_veterinarias"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Veterinarias" />
+                android:title="@string/navigation_drawer_veterinarian_places" />
             <item
                 android:id="@+id/nav_Articulos"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/navigation_drawer_tool_places" />
+        </menu>
+    </item>
+
+    <item android:title="@string/navigation_drawer_cares">
+        <menu>
+            <item
+                android:id="@+id/nav_hygienic_cara"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Alimenticios" />
+            <item
+                android:id="@+id/nav_food_care"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Veterinarias" />
+            <item
+                android:id="@+id/nav_vaccines"
                 android:icon="@drawable/ic_menu_send"
                 android:title="Articulos" />
         </menu>
