@@ -21,4 +21,7 @@
     <string name="navigation_drawer_hygienic_cares">Higienicos</string>
     <string name="navigation_drawer_food_cares">Alimenticios</string>
     <string name="navigation_drawer_vaccines">Vacunas</string>
+    <string name="navigation_drawer_settings">Configuración</string>
+    <string name="navigation_drawer_about_team">Acerca de</string>
+    <string name="navigation_drawer_app">MascotApps</string>
 </resources>
