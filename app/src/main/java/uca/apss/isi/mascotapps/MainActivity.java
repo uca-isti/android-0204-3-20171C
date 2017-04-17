@@ -15,8 +15,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import uca.apss.isi.mascotapps.fragment.AboutTeamFragment;
+import uca.apss.isi.mascotapps.fragment.FoodCareFragment;
 import uca.apss.isi.mascotapps.fragment.HomeFragment;
-import uca.apss.isi.mascotapps.fragment.LocationFragment;
+import uca.apss.isi.mascotapps.fragment.HygienicCareFragment;
+import uca.apss.isi.mascotapps.fragment.LocationFoodFragment;
+import uca.apss.isi.mascotapps.fragment.PetSuppliesFragment;
+import uca.apss.isi.mascotapps.fragment.SettingsFragment;
+import uca.apss.isi.mascotapps.fragment.VaccinesFragment;
+import uca.apss.isi.mascotapps.fragment.YourPetsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,12 +99,24 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.navigation_home) {
             fragmentClass = HomeFragment.class;
-        } else if (id == R.id.nav_alimentos) {
-            fragmentClass = LocationFragment.class;
+        } else if(id == R.id.nav_pets){
+            fragmentClass = YourPetsFragment.class;
+        }else if (id == R.id.nav_alimentos) {
+            fragmentClass = LocationFoodFragment.class;
         } else if (id == R.id.nav_veterinarias) {
-
+            fragmentClass = LocationFoodFragment.class;
         } else if (id == R.id.nav_Articulos) {
-
+            fragmentClass = PetSuppliesFragment.class;
+        }else if(id == R.id.nav_hygienic_care) {
+            fragmentClass = HygienicCareFragment.class;
+        }else if(id == R.id.nav_food_care) {
+            fragmentClass = FoodCareFragment.class;
+        }else if(id == R.id.nav_vaccines){
+            fragmentClass = VaccinesFragment.class;
+        }else if(id == R.id.nav_settings){
+            fragmentClass = SettingsFragment.class;
+        }else if(id == R.id.nav_about_team){
+            fragmentClass = AboutTeamFragment.class;
         }
 
         try {
