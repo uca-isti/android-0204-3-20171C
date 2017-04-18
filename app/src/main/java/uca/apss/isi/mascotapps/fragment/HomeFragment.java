@@ -3,6 +3,8 @@ package uca.apss.isi.mascotapps.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +18,7 @@ import retrofit2.Response;
 import uca.apss.isi.mascotapps.R;
 import uca.apss.isi.mascotapps.api.Api;
 import uca.apss.isi.mascotapps.models.ProfileModel;
+import uca.apss.isi.mascotapps.ui.adapters.ProfileAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,10 +26,17 @@ import uca.apss.isi.mascotapps.models.ProfileModel;
 public class HomeFragment extends Fragment {
 
     private static final String TAG = "HomeFragment";
+    RecyclerView mRecyclerView;
+    private RecyclerView.Adapter mAdapter;
+    LinearLayoutManager mLayoutManager;
 
 
     public HomeFragment() {
         // Required empty public constructor
+        mRecyclerView = (RecyclerView) mRecyclerView.findViewById(R.id.mi_recicler);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
         getData();
     }
 
@@ -46,13 +56,15 @@ public class HomeFragment extends Fragment {
                 //valida si la respusta fue nula porque no habia tweets
                 if (response != null) {
                     for (ProfileModel profileModel : response.body()) {
-                        Log.d(TAG, profileModel.getFirstName());
-                        Log.d(TAG, profileModel.getLastName());
-                        Log.d(TAG, profileModel.getEmail());
-                        Log.d(TAG, profileModel.getPassword());
-                        Log.d(TAG, String.valueOf(profileModel.getId()));
-                        Log.d(TAG, String.valueOf(profileModel.getProfile_id()));
-                        Log.d(TAG, String.valueOf(profileModel.getProfilePetsId()));
+                        mAdapter = new ProfileAdapter(profileModel);
+                        mRecyclerView.setAdapter(mAdapter);
+                        //Log.d(TAG, profileModel.getFirstName());
+                        //Log.d(TAG, profileModel.getLastName());
+                        //Log.d(TAG, profileModel.getEmail());
+                        //Log.d(TAG, profileModel.getPassword());
+                        //Log.d(TAG, String.valueOf(profileModel.getId()));
+                        //Log.d(TAG, String.valueOf(profileModel.getProfile_id()));
+                        //Log.d(TAG, String.valueOf(profileModel.getProfilePetsId()));
                     }
                 } else {
                     Log.d(TAG, "La respuesta es incorrecta");
