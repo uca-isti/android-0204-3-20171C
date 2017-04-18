@@ -26,7 +26,7 @@ public class YourPetsFragment extends Fragment {
     private static final String TAG = "YourPetsFragment";
 
     public YourPetsFragment() {
-        //getData();
+        getData();
     }
 
 
