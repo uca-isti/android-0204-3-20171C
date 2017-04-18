@@ -4,6 +4,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import uca.apss.isi.mascotapps.models.PetModel;
 import uca.apss.isi.mascotapps.models.ProfileModel;
 
 /**
@@ -13,4 +14,7 @@ import uca.apss.isi.mascotapps.models.ProfileModel;
 public interface ApiInterface {
     @GET("profiles")
     Call<List<ProfileModel>> getProfile();
+
+    @GET("pets")
+    Call<List<PetModel>> getPet();
 }
