@@ -33,17 +33,17 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         // Required empty public constructor
-        mRecyclerView = (RecyclerView) mRecyclerView.findViewById(R.id.mi_recicler);
-        mRecyclerView.setHasFixedSize(true);
-        mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        getData();
+
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mRecyclerView = (RecyclerView) mRecyclerView.findViewById(R.id.mi_recicler);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        getData();
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
@@ -54,10 +54,10 @@ public class HomeFragment extends Fragment {
             @Override
             public void onResponse(Call<List<ProfileModel>> call, Response<List<ProfileModel>> response) {
                 //valida si la respusta fue nula porque no habia tweets
-                if (response != null) {
-                    for (ProfileModel profileModel : response.body()) {
-                        mAdapter = new ProfileAdapter(profileModel);
-                        mRecyclerView.setAdapter(mAdapter);
+                if (response != null && response.body()!= null) {
+                    mAdapter = new ProfileAdapter(response.body());
+                    mRecyclerView.setAdapter(mAdapter);
+                    //for (ProfileModel profileModel : response.body()) {
                         //Log.d(TAG, profileModel.getFirstName());
                         //Log.d(TAG, profileModel.getLastName());
                         //Log.d(TAG, profileModel.getEmail());
@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
                         //Log.d(TAG, String.valueOf(profileModel.getId()));
                         //Log.d(TAG, String.valueOf(profileModel.getProfile_id()));
                         //Log.d(TAG, String.valueOf(profileModel.getProfilePetsId()));
-                    }
+                    //}
                 } else {
                     Log.d(TAG, "La respuesta es incorrecta");
                 }
