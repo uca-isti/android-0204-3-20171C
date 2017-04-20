@@ -1,5 +1,7 @@
 package uca.apss.isi.mascotapps.models;
 
+import java.util.List;
+
 /**
  * Created by usuario on 7/4/2017.
  */
