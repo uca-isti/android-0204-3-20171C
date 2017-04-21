@@ -39,13 +39,15 @@ public class HomeFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        mRecyclerView = (RecyclerView) mRecyclerView.findViewById(R.id.mi_recicler);
+
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.mi_recicler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         getData();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return view;
     }
 
     private void getData() {
