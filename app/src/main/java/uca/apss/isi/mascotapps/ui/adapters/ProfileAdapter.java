@@ -24,9 +24,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         public TextView lastName;
         public TextView email;
         public TextView password;
-        public TextView id;
-        public TextView profile_id;
-        public TextView profilePetsId;
+       // public TextView profile_id;
+        //public TextView profilePetsId;
 
         public ViewHolder(View view){
             super(view);
@@ -34,9 +33,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
             lastName = (TextView) view.findViewById(R.id.lastName);
             email = (TextView) view.findViewById(R.id.email);
             password = (TextView) view.findViewById(R.id.password);
-            id = (TextView) view.findViewById(R.id.id);
-            profile_id = (TextView) view.findViewById(R.id.profile_id);
-            profilePetsId = (TextView) view.findViewById(R.id.profilePetsId);
+            //profile_id = (TextView) view.findViewById(R.id.profile_id);
+            //profilePetsId = (TextView) view.findViewById(R.id.profilePetsId);
         }
     }
 
@@ -56,9 +54,8 @@ public class ProfileAdapter extends RecyclerView.Adapter<ProfileAdapter.ViewHold
         holder.lastName.setText(profileModel.getLastName());
         holder.email.setText(profileModel.getEmail());
         holder.password.setText(profileModel.getPassword());
-        holder.id.setText(profileModel.getId());
-        holder.profile_id.setText(profileModel.getProfile_id());
-        holder.profilePetsId.setText(profileModel.getProfilePetsId());
+        //holder.profile_id.setText(profileModel.getProfile_id());
+        //holder.profilePetsId.setText(profileModel.getProfilePetsId());
     }
 
     @Override
