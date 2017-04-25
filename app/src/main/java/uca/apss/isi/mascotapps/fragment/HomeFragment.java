@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -46,6 +48,7 @@ public class HomeFragment extends Fragment {
         mLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(mLayoutManager);
         getData();
+        getDataRealm();
         // Inflate the layout for this fragment
         return view;
     }
@@ -59,7 +62,9 @@ public class HomeFragment extends Fragment {
                 if (response != null && response.body()!= null) {
                     mAdapter = new ProfileAdapter(response.body());
                     mRecyclerView.setAdapter(mAdapter);
-                    //for (ProfileModel profileModel : response.body()) {
+
+                    for (ProfileModel profileModel : response.body()) {
+                        saveRealm(profileModel);
                         //Log.d(TAG, profileModel.getFirstName());
                         //Log.d(TAG, profileModel.getLastName());
                         //Log.d(TAG, profileModel.getEmail());
@@ -67,7 +72,7 @@ public class HomeFragment extends Fragment {
                         //Log.d(TAG, String.valueOf(profileModel.getId()));
                         //Log.d(TAG, String.valueOf(profileModel.getProfile_id()));
                         //Log.d(TAG, String.valueOf(profileModel.getProfilePetsId()));
-                    //}
+                    }
                 } else {
                     Log.d(TAG, "La respuesta es incorrecta");
                 }
@@ -78,5 +83,32 @@ public class HomeFragment extends Fragment {
             }
         });
     }
+
+    private void saveRealm(ProfileModel pm) {
+        Realm realm = Realm.getDefaultInstance();
+
+        realm.beginTransaction();
+        ProfileModel profileModel = realm.createObject(ProfileModel.class);
+        profileModel.setEmail(pm.getEmail().toString());
+        profileModel.setPassword(pm.getPassword().toString());
+        profileModel.setFirstName(pm.getFirstName().toString());
+        profileModel.setLastName(pm.getLastName().toString());
+        realm.commitTransaction();
+    }
+
+    private void getDataRealm(){
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<ProfileModel> profileModelRealmResults = realm.where(ProfileModel.class).findAll();
+        for(ProfileModel profileModel : profileModelRealmResults) {
+            Log.i("MainActivity", profileModel.getEmail());
+            Log.i("MainActivity", profileModel.getPassword());
+            Log.i("MainActivity", profileModel.getFirstName());
+            Log.i("MainActivity", profileModel.getLastName());
+
+
+            //deleteItem(user);
+        }
+    }
+
 
 }
