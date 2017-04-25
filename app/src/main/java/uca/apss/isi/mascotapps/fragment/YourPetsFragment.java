@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.realm.Realm;
+import io.realm.RealmResults;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,6 +34,7 @@ public class YourPetsFragment extends Fragment {
     public RecyclerView yourPets;
     public PetAdapter petAdapter;
     public ArrayList<PetModel> petModelArrayList;
+
     public YourPetsFragment() {
 
     }
@@ -44,7 +47,8 @@ public class YourPetsFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_your_pets, container, false);
         yourPets = (RecyclerView) rootView.findViewById(R.id.recycler_view_your_pets);
         petModelArrayList = new ArrayList<>();
-        getData();
+        //getData();
+        getDataRealm();
 
 
 
@@ -61,13 +65,8 @@ public class YourPetsFragment extends Fragment {
             public void onResponse(Call<List<PetModel>> call, Response<List<PetModel>> response) {
                 if(response != null){
                     for(PetModel petModel : response.body()){
-                            //Log.d(TAG, petModel.getName() + " - " + petModel.getPicture());
-                            petModelArrayList.add(petModel);
+                           savePetModel(petModel);
                     }//end for each
-                    Log.d(TAG, petModelArrayList.toString());
-                    petAdapter = new PetAdapter(getActivity(), petModelArrayList);
-                    yourPets.setAdapter(petAdapter);
-                    yourPets.setLayoutManager(new LinearLayoutManager(getActivity()));
                 }//end if
 
             }//end method
@@ -78,6 +77,30 @@ public class YourPetsFragment extends Fragment {
             }//end met
             // hod
         });
+    }//end method
+
+
+    private void savePetModel(PetModel petModel){
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        PetModel realmPetModel = realm.createObject(PetModel.class);
+        realmPetModel.setName(petModel.getName());
+        realmPetModel.setPicture(petModel.getPicture());
+        realm.commitTransaction();
+    }//end mothod
+
+    private void getDataRealm(){
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<PetModel> petModelRealmResults = realm.where(PetModel.class).findAll();
+
+        for(PetModel petModel: petModelRealmResults){
+            petModelArrayList.add(petModel);
+        }//end foreach
+
+        petAdapter = new PetAdapter(getActivity(), petModelArrayList);
+        yourPets.setAdapter(petAdapter);
+        yourPets.setLayoutManager(new LinearLayoutManager(getActivity()));
+
     }//end method
 
 }//en class

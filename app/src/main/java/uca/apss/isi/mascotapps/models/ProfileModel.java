@@ -2,11 +2,13 @@ package uca.apss.isi.mascotapps.models;
 
 import java.util.List;
 
+import io.realm.RealmObject;
+
 /**
  * Created by usuario on 7/4/2017.
  */
 
-public class ProfileModel {
+public class ProfileModel extends RealmObject {
     public String email;
     public String password;
     public String firstName;
